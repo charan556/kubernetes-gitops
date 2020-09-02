@@ -1,0 +1,2 @@
+replicaCount: 1
+imageName: springboot-skaffold-helm-demo

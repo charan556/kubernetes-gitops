@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: springboot-skaffold-helm-deploy
+  name: springboot-skaffold-helm-deploy
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: springboot-skaffold-helm-deploy
+  template:
+    metadata:
+      labels:
+        app: springboot-skaffold-helm-deploy
+    spec:
+      containers:
+      - image: {{ .Values.imageName }}
+        imagePullPolicy: IfNotPresent
+        name: springdemo-skaffold-helm-container
+        resources: {}

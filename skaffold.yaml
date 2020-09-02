@@ -1,0 +1,25 @@
+apiVersion: skaffold/v2beta6
+kind: Config
+metadata:
+  name: skaffold-helm-example
+build:
+  local:
+    push: false
+  artifacts:
+    - image: springboot-skaffold-helm-demo
+      jib:
+        type: maven
+      context: .  
+deploy:
+  helm:
+    releases:
+      - name: my-skaffold-helm-release
+        artifactOverrides:
+          image: springboot-skaffold-helm-demo
+        chartPath: charts
+        valuesFiles: 
+        - charts/values.yaml
+#  kubectl:
+#    manifests:
+#    - deployment.yaml
+#    - service.yaml
